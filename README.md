@@ -1,7 +1,7 @@
 <div id="top"></div>
 <!-- PROJECT LOGO -->
 <div align="center">
-<img src="./src/assets/logo.svg" alt="Logo">
+<img width="70%" src="./src/assets/logo.svg" alt="Logo">
 
   <h1 align="center">Medicine Cabinet</h1>
 
@@ -17,11 +17,16 @@
 
 ## About The Project
 
+Front end for <a href="https://github.com/feliceforgione/otc_api"> OTC API </a>
+
 <br>
 
 ### Built With
 
-         |
+|                                     |                             |
+| ----------------------------------- | --------------------------- |
+| [Node.js](https://nodejs.org/en/)   | [React](https://react.dev/) |
+| [Chakra UI](https://chakra-ui.com/) |                             |
 
 <br>
 
