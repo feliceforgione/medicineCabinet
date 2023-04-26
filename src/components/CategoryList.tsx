@@ -17,9 +17,9 @@ interface Props {
 }
 
 function CategoryList({ onSelectCategory, selectedCategory }: Props) {
-  const { data: categories, error, loading } = useCategories();
+  const { isLoading, isError, data: categories } = useCategories();
 
-  if (error) return null;
+  if (isError) return null;
   return (
     <div>
       <Heading
@@ -31,26 +31,27 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
       >
         CATEGORIES
       </Heading>
-      {loading && <SkeletonCategoryList />}
+      {isLoading && <SkeletonCategoryList />}
 
       <List spacing={4}>
-        {categories.map((category) => (
-          <ListItem
-            key={category._id}
-            onClick={() => onSelectCategory(category)}
-          >
-            <HStack>
-              <Image boxSize="32px" borderRadius={8} src={category.icon} />
-              {selectedCategory?.name === category.name ? (
-                <Text as="b">{category.name}</Text>
-              ) : (
-                <Button whiteSpace="normal" textAlign="left" variant="link">
-                  {category.name}
-                </Button>
-              )}
-            </HStack>
-          </ListItem>
-        ))}
+        {categories &&
+          categories.map((category) => (
+            <ListItem
+              key={category._id}
+              onClick={() => onSelectCategory(category)}
+            >
+              <HStack>
+                <Image boxSize="32px" borderRadius={8} src={category.icon} />
+                {selectedCategory?.name === category.name ? (
+                  <Text as="b">{category.name}</Text>
+                ) : (
+                  <Button whiteSpace="normal" textAlign="left" variant="link">
+                    {category.name}
+                  </Button>
+                )}
+              </HStack>
+            </ListItem>
+          ))}
       </List>
     </div>
   );
