@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ProductGrid = ({ productQuery }: Props) => {
-  const { data: products, error, loading } = useProducts(productQuery);
+  const { data: products, error, isLoading } = useProducts(productQuery);
   const skeletons = [1, 2, 3];
 
   return (
@@ -22,15 +22,15 @@ const ProductGrid = ({ productQuery }: Props) => {
       padding="10px"
       spacing={7}
     >
-      {error && <Text>{error}</Text>}
-      {loading &&
+      {error && <Text>{error.message}</Text>}
+      {isLoading &&
         skeletons.map((skeleton) => (
           <ProductCardContainer key={skeleton}>
             <SkeletonProductCard />
           </ProductCardContainer>
         ))}
-      {!loading &&
-        products.map((product) => (
+      {!isLoading &&
+        products?.productIds.map((product) => (
           <ProductCardContainer key={product._id}>
             <ProductCard product={product} />
           </ProductCardContainer>

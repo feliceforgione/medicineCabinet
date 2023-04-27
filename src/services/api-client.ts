@@ -12,8 +12,17 @@ interface FetchResponse<T> {
 
 const getData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
   return apiClient
-    .get<FetchResponse<T>>(endpoint, { ...requestConfig })
-    .then((res) => res.data.result);
+    .get(endpoint, { ...requestConfig })
+    .then<T[]>((res) => res.data.result);
 };
 
-export { getData };
+const getProducts = <T>(
+  endpoint: string,
+  requestConfig?: AxiosRequestConfig
+) => {
+  return apiClient
+    .get(endpoint, { ...requestConfig })
+    .then<T>((res) => res.data.result);
+};
+
+export { getData, getProducts };
