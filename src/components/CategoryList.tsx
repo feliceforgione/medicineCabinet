@@ -18,7 +18,6 @@ interface Props {
 
 function CategoryList({ onSelectCategory, selectedCategory }: Props) {
   const { isLoading, isError, data: categories } = useCategories();
-
   if (isError) return null;
   return (
     <div>

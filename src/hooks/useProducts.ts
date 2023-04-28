@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { ProductQuery } from "../App";
-import { getData, getProducts } from "../services/api-client";
-import { Category } from "./../hooks/useCategories";
+import { getProducts } from "../services/api-client";
 import { AxiosError } from "axios";
 //import useData from "./useData";
 
@@ -39,14 +38,6 @@ const useProducts = (productQuery: ProductQuery) => {
       }),
     staleTime: 60 * 1000,
   });
-  /*   return useData<Product>(
-    `/category/${category?._id}/products`,
-    [productQuery],
-    {
-      params: { sort: sortOrder },
-    },
-    "productIds"
-  ); */
 };
 
 export default useProducts;
