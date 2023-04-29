@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getData } from "../services/api-client";
+import ms from "ms";
 import initialCatetories from "../data/categories";
+import { getData } from "../services/api-client";
 
 export interface Category {
   _id: string;
@@ -13,7 +14,7 @@ const useCategories = () => {
   return useQuery<Category[]>({
     queryKey: ["categories"],
     queryFn: () => getData("/category"),
-    staleTime: 60 * 1000,
+    staleTime: ms("5s"),
     initialData: initialCatetories,
   });
 };
