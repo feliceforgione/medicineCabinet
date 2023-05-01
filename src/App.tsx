@@ -1,23 +1,23 @@
 import { Flex, Grid, GridItem, Show } from "@chakra-ui/react";
+import Breadcrumbs from "./components/Breadcrumbs";
+import CategoryGrid from "./components/CategoryGrid";
+import CategoryList from "./components/CategoryList";
 import NavBar from "./components/NavBar";
 import ProductGrid from "./components/ProductGrid";
-import CategoryList from "./components/CategoryList";
-import { useState } from "react";
-import { Category } from "./hooks/useCategories";
-import CategoryGrid from "./components/CategoryGrid";
-import Breadcrumbs from "./components/Breadcrumbs";
 import SortSelector from "./components/SortSelector";
+import useProductQueryStore from "./services/productQueryStore";
 
-export interface ProductQuery {
+/* export interface ProductQuery {
   category: Category | null;
   sortOrder: string;
-}
+} */
 
 function App() {
-  const [productQuery, setProductQuery] = useState<ProductQuery>(
+  /*   const [productQuery, setProductQuery] = useState<ProductQuery>(
     {} as ProductQuery
   );
-
+ */
+  const category = useProductQueryStore((s) => s.category);
   return (
     <Grid
       templateAreas={{ base: `"nav"  "main"`, lg: `"nav  nav" "aside  main"` }}
@@ -31,38 +31,15 @@ function App() {
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
-          <CategoryList
-            onSelectCategory={(category) =>
-              setProductQuery({ ...productQuery, category })
-            }
-            selectedCategory={productQuery.category}
-          />
+          <CategoryList />
         </GridItem>
       </Show>
       <GridItem area="main">
         <Flex justifyContent="space-between" paddingX={5}>
-          <Breadcrumbs
-            category={productQuery.category}
-            onSelectBreadcrumb={(category) =>
-              setProductQuery({ ...productQuery, category })
-            }
-          />
-          <SortSelector
-            selectedSort={productQuery.sortOrder}
-            onSelectSortOrder={(sortOrder) =>
-              setProductQuery({ ...productQuery, sortOrder })
-            }
-          />
+          <Breadcrumbs />
+          <SortSelector />
         </Flex>
-        {productQuery.category ? (
-          <ProductGrid productQuery={productQuery} />
-        ) : (
-          <CategoryGrid
-            onSelectCategory={(category) =>
-              setProductQuery({ ...productQuery, category })
-            }
-          />
-        )}
+        {category ? <ProductGrid /> : <CategoryGrid />}
       </GridItem>
     </Grid>
   );

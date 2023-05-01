@@ -3,14 +3,17 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 import SkeletonProductCard from "./SkeletonProductCard";
 import ProductCardContainer from "./ProductCardContainer";
-import { ProductQuery } from "../App";
 
-interface Props {
-  productQuery: ProductQuery;
-}
+import useProductQueryStore from "../services/productQueryStore";
 
-const ProductGrid = ({ productQuery }: Props) => {
-  const { data: products, error, isLoading } = useProducts(productQuery);
+const ProductGrid = () => {
+  const category = useProductQueryStore((s) => s.category);
+  const sortOrder = useProductQueryStore((s) => s.sortOrder);
+  const {
+    data: products,
+    error,
+    isLoading,
+  } = useProducts({ category, sortOrder });
   const skeletons = [1, 2, 3];
 
   return (

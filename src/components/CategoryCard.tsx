@@ -1,21 +1,21 @@
 import { AspectRatio, Card, CardBody, Heading, Image } from "@chakra-ui/react";
 import React from "react";
 import { Category } from "../hooks/useCategories";
-import { ProductQuery } from "../App";
+import useProductQueryStore from "../services/productQueryStore";
 
 interface Props {
-  onSelectCategory: (category: Category) => void;
   category: Category;
 }
 
-function CategoryCard({ onSelectCategory, category }: Props) {
+function CategoryCard({ category }: Props) {
+  const setCategory = useProductQueryStore((s) => s.setCategory);
   return (
-    <Card onClick={() => onSelectCategory(category)}>
+    <Card onClick={() => setCategory(category)}>
       <AspectRatio ratio={4 / 3}>
-        <Image src={category.icon} />
+        <Image src={category?.icon} />
       </AspectRatio>
       <CardBody>
-        <Heading fontSize="xl">{category.name}</Heading>
+        <Heading fontSize="xl">{category?.name}</Heading>
       </CardBody>
     </Card>
   );

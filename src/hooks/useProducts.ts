@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { ProductQuery } from "../App";
+//import { ProductQuery } from "../App";
 import { getProducts } from "../services/api-client";
 import { AxiosError } from "axios";
 import ms from "ms";
+import { Category } from "./useCategories";
 //import useData from "./useData";
 
 interface Image {
@@ -28,9 +29,14 @@ export interface ProductsByCategory {
   icon: string;
 }
 
-const useProducts = (productQuery: ProductQuery) => {
-  console.log(productQuery);
-  const { category, sortOrder } = productQuery;
+interface ProductQuery {
+  category: Category | null;
+  sortOrder: string;
+}
+
+const useProducts = ({ category, sortOrder }: ProductQuery) => {
+  //console.log(productQuery);
+  //
   return useQuery<ProductsByCategory, AxiosError>({
     queryKey: ["category", category?.name, "products", sortOrder],
     queryFn: () =>

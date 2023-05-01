@@ -1,13 +1,9 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import React from "react";
+import useProductQueryStore from "../services/productQueryStore";
 
-interface Props {
-  onSelectSortOrder: (sortOrder: string) => void;
-  selectedSort: string;
-}
-
-function SortSelector({ onSelectSortOrder, selectedSort }: Props) {
+function SortSelector() {
+  const { sortOrder, setSortOrder } = useProductQueryStore();
   const sortOrders = [
     { value: "", label: "Relevance" },
     { value: "title", label: "Title" },
@@ -17,7 +13,7 @@ function SortSelector({ onSelectSortOrder, selectedSort }: Props) {
   ];
 
   const selectedSortLabel = sortOrders.find(
-    (sortItem) => sortItem.value === selectedSort
+    (sortItem) => sortItem.value === sortOrder
   )?.label;
   return (
     <Menu>
@@ -27,7 +23,7 @@ function SortSelector({ onSelectSortOrder, selectedSort }: Props) {
       <MenuList>
         {sortOrders.map((sortItem) => (
           <MenuItem
-            onClick={() => onSelectSortOrder(sortItem.value)}
+            onClick={() => setSortOrder(sortItem.value)}
             key={sortItem.value}
             value={sortItem.value}
           >

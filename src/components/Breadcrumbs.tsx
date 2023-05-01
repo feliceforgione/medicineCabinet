@@ -4,22 +4,14 @@ import {
   BreadcrumbLink,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
-import { Category } from "../hooks/useCategories";
-import { ProductQuery } from "../App";
+import useProductQueryStore from "../services/productQueryStore";
 
-interface Props {
-  onSelectBreadcrumb: (category: Category | null) => void;
-  category: Category | null;
-}
-
-function Breadcrumbs({ category, onSelectBreadcrumb }: Props) {
+function Breadcrumbs() {
+  const { category, setCategory } = useProductQueryStore();
   return (
     <Breadcrumb spacing="8px" fontSize={20}>
       <BreadcrumbItem>
-        <BreadcrumbLink onClick={() => onSelectBreadcrumb(null)}>
-          Home
-        </BreadcrumbLink>
+        <BreadcrumbLink onClick={() => setCategory(null)}>Home</BreadcrumbLink>
       </BreadcrumbItem>
       {category && (
         <BreadcrumbItem isCurrentPage>

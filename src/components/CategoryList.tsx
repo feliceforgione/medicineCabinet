@@ -1,5 +1,4 @@
 import useCategories from "../hooks/useCategories";
-import { Category } from "./../hooks/useCategories";
 import {
   Button,
   HStack,
@@ -10,14 +9,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import SkeletonCategoryList from "./SkeletonCategoryList";
+import useProductQueryStore from "../services/productQueryStore";
 
-interface Props {
-  onSelectCategory: (category: Category | null) => void;
-  selectedCategory: Category | null;
-}
-
-function CategoryList({ onSelectCategory, selectedCategory }: Props) {
+function CategoryList() {
   const { isLoading, isError, data: categories } = useCategories();
+  const selectedCategory = useProductQueryStore((s) => s.category);
+  const setCategory = useProductQueryStore((s) => s.setCategory);
   if (isError) return null;
   return (
     <div>
@@ -26,7 +23,7 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
         as="h2"
         paddingBottom={5}
         textAlign={"center"}
-        onClick={() => onSelectCategory(null)}
+        onClick={() => setCategory(null)}
       >
         CATEGORIES
       </Heading>
@@ -35,10 +32,7 @@ function CategoryList({ onSelectCategory, selectedCategory }: Props) {
       <List spacing={4}>
         {categories &&
           categories.map((category) => (
-            <ListItem
-              key={category._id}
-              onClick={() => onSelectCategory(category)}
-            >
+            <ListItem key={category._id} onClick={() => setCategory(category)}>
               <HStack>
                 <Image boxSize="32px" borderRadius={8} src={category.icon} />
                 {selectedCategory?.name === category.name ? (
