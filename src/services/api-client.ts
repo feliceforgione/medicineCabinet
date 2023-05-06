@@ -5,11 +5,6 @@ const apiClient = axios.create({
   params: {},
 });
 
-interface FetchResponse<T> {
-  message: string;
-  result: T[];
-}
-
 const getData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
   return apiClient
     .get(endpoint, { ...requestConfig })

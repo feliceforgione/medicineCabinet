@@ -1,4 +1,4 @@
-import useProducts, { Product } from "../hooks/useProducts";
+import useProducts from "../hooks/useProducts";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 import SkeletonProductCard from "./SkeletonProductCard";
@@ -6,7 +6,7 @@ import ProductCardContainer from "./ProductCardContainer";
 
 import useProductQueryStore from "../services/productQueryStore";
 import { useParams } from "react-router-dom";
-import useCategories, { Category } from "../hooks/useCategories";
+import useCategories from "../hooks/useCategories";
 import useBreadCrumbStore from "../services/breadcrumbsStore";
 import { useEffect } from "react";
 import { useErrorBoundary } from "react-error-boundary";

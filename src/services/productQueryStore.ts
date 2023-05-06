@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Category } from "../hooks/useCategories";
+import { Category } from "../entities/Category";
 
 interface ProductQueryStore {
   category: Category | null;

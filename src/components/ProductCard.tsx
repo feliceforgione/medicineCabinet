@@ -1,4 +1,3 @@
-import { Product } from "../hooks/useProducts";
 import {
   AspectRatio,
   Box,
@@ -10,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
+import { Product } from "../entities/Product";
 
 interface Props {
   product: Product;

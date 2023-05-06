@@ -2,14 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import initialCatetories from "../data/categories";
 import { getData } from "../services/api-client";
-
-export interface Category {
-  _id: string;
-  name: string;
-  slug?: string;
-  productIds: string[];
-  icon: string;
-}
+import { Category } from "../entities/Category";
 
 const useCategories = () => {
   return useQuery<Category[]>({

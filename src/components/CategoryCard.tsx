@@ -6,7 +6,7 @@ import {
   Heading,
   Image,
 } from "@chakra-ui/react";
-import { Category } from "../hooks/useCategories";
+import { Category } from "../entities/Category";
 import { Link } from "react-router-dom";
 import slugify from "@sindresorhus/slugify";
 

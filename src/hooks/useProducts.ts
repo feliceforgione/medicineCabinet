@@ -3,24 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../services/api-client";
 import { AxiosError } from "axios";
 import ms from "ms";
-import { Category } from "./useCategories";
+import { Category } from "../entities/Category";
+import { Product } from "../entities/Product";
 //import useData from "./useData";
-
-interface Image {
-  link: string;
-  id: string;
-  zoomable: boolean;
-  main_image: boolean;
-}
-
-export interface Product {
-  _id: string;
-  title: string;
-  brand: string;
-  ratings: number;
-  price: number;
-  images: Image[];
-}
 
 export interface ProductsByCategory {
   _id: string;
