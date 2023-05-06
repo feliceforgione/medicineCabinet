@@ -8,10 +8,11 @@ import useProductQueryStore from "../services/productQueryStore";
 import { useParams } from "react-router-dom";
 import useCategories, { Category } from "../hooks/useCategories";
 import useBreadCrumbStore from "../services/breadcrumbsStore";
-import { unstable_batchedUpdates } from "react-dom";
 import { useEffect } from "react";
+import { useErrorBoundary } from "react-error-boundary";
 
 const CategoryProductsGrid = () => {
+  const { showBoundary } = useErrorBoundary();
   const { categorySlug } = useParams();
   const {
     isLoading: isCategoryLoading,
@@ -22,7 +23,6 @@ const CategoryProductsGrid = () => {
   const category = categories?.find(
     (category) => category.slug === categorySlug
   );
-  //console.log("catgory", category);
 
   const sortOrder = useProductQueryStore((s) => s.sortOrder);
   const {
@@ -34,8 +34,6 @@ const CategoryProductsGrid = () => {
   const skeletons = [1, 2, 3];
   const { updatecategoryBreadcrumb } = useBreadCrumbStore();
   useEffect(() => {
-    console.log("inside useeffect", category);
-
     updatecategoryBreadcrumb(
       category
         ? {
@@ -45,9 +43,14 @@ const CategoryProductsGrid = () => {
         : null
     );
   }, [category]);
-  if (category == null) return <div>No category found</div>;
-  if (isCategoryLoading) return <div>Loading</div>;
-  if (isError) return <div>category query error</div>;
+
+  try {
+    if (category == null) throw Error("Category Not Found");
+    if (isCategoryLoading) return <div>Loading</div>;
+    if (isError) throw Error("Category error");
+  } catch (err) {
+    showBoundary(err);
+  }
 
   return (
     <SimpleGrid

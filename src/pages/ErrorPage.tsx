@@ -4,12 +4,15 @@ import NavBar from "../components/NavBar";
 
 function ErrorPage() {
   const error = useRouteError();
+
   if (isRouteErrorResponse(error)) {
     return (
       <>
         <NavBar />
         <Box p={10}>
-          <Heading>Oops!</Heading>
+          <Heading as="h2" size="lg">
+            Error
+          </Heading>
           <h2>{error.status}</h2>
           <Text>{error.statusText}</Text>
           {error.data?.message && <p>{error.data.message}</p>}
@@ -20,8 +23,12 @@ function ErrorPage() {
     return (
       <>
         <NavBar />
-        <Heading>Oops</Heading>
-        <Text>An unexpected error occured</Text>
+        <Box p={10}>
+          <Heading as="h2" size="lg">
+            Error
+          </Heading>
+          <Text> An unexpected error occurred</Text>
+        </Box>
       </>
     );
   }
