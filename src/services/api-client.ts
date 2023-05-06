@@ -16,6 +16,15 @@ const getData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
     .then<T[]>((res) => res.data.result);
 };
 
+const getDataPoint = <T>(
+  endpoint: string,
+  requestConfig?: AxiosRequestConfig
+) => {
+  return apiClient
+    .get(endpoint, { ...requestConfig })
+    .then<T>((res) => res.data.result);
+};
+
 const getProducts = <T>(
   endpoint: string,
   requestConfig?: AxiosRequestConfig
@@ -25,4 +34,4 @@ const getProducts = <T>(
     .then<T>((res) => res.data.result);
 };
 
-export { getData, getProducts };
+export { getData, getProducts, getDataPoint };

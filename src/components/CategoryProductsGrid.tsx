@@ -45,8 +45,8 @@ const CategoryProductsGrid = () => {
   }, [category]);
 
   try {
-    if (category == null) throw Error("Category Not Found");
     if (isCategoryLoading) return <div>Loading</div>;
+    if (category == null) throw Error("Category Not Found");
     if (isError) throw Error("Category error");
   } catch (err) {
     showBoundary(err);
