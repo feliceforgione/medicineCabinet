@@ -3,8 +3,8 @@ import { Outlet } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CategoryList from "../components/CategoryList";
 import SortSelector from "../components/SortSelector";
-import { useEffect } from "react";
-import useBreadCrumbStore from "../services/breadcrumbsStore";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorBox from "../components/ErrorBox";
 
 function CategoryPage() {
   return (
@@ -21,11 +21,13 @@ function CategoryPage() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Flex justifyContent="space-between" paddingX={5}>
-          <Breadcrumbs />
-          <SortSelector />
-        </Flex>
-        <Outlet />
+        <ErrorBoundary FallbackComponent={ErrorBox}>
+          <Flex justifyContent="space-between" paddingX={5}>
+            <Breadcrumbs />
+            <SortSelector />
+          </Flex>
+          <Outlet />
+        </ErrorBoundary>
       </GridItem>
     </Grid>
   );
