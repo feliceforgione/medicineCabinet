@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import CategoryList from "../components/CategoryList";
 import SortSelector from "../components/SortSelector";
+import { useEffect } from "react";
+import useBreadCrumbStore from "../services/breadcrumbsStore";
 
 function CategoryPage() {
   return (

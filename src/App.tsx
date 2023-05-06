@@ -3,7 +3,7 @@ import Breadcrumbs from "./components/Breadcrumbs";
 import CategoryGrid from "./components/CategoryGrid";
 import CategoryList from "./components/CategoryList";
 import NavBar from "./components/NavBar";
-import ProductGrid from "./components/ProductGrid";
+import ProductGrid from "./components/CategoryProductsGrid";
 import SortSelector from "./components/SortSelector";
 import useProductQueryStore from "./services/productQueryStore";
 

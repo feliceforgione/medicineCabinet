@@ -1,30 +1,15 @@
 import useCategories from "../hooks/useCategories";
-import {
-  Button,
-  HStack,
-  Heading,
-  Image,
-  List,
-  ListItem,
-  Text,
-} from "@chakra-ui/react";
+import { HStack, Heading, Image, List, ListItem } from "@chakra-ui/react";
 import SkeletonCategoryList from "./SkeletonCategoryList";
-import useProductQueryStore from "../services/productQueryStore";
+import { NavLink } from "react-router-dom";
+import slugify from "@sindresorhus/slugify";
 
 function CategoryList() {
   const { isLoading, isError, data: categories } = useCategories();
-  const selectedCategory = useProductQueryStore((s) => s.category);
-  const setCategory = useProductQueryStore((s) => s.setCategory);
   if (isError) return null;
   return (
-    <div>
-      <Heading
-        size={"md"}
-        as="h2"
-        paddingBottom={5}
-        textAlign={"center"}
-        onClick={() => setCategory(null)}
-      >
+    <div id="categoriesSideBar">
+      <Heading size={"md"} as="h2" paddingBottom={5} textAlign={"center"}>
         CATEGORIES
       </Heading>
       {isLoading && <SkeletonCategoryList />}
@@ -32,16 +17,12 @@ function CategoryList() {
       <List spacing={4}>
         {categories &&
           categories.map((category) => (
-            <ListItem key={category._id} onClick={() => setCategory(category)}>
+            <ListItem key={category._id}>
               <HStack>
                 <Image boxSize="32px" borderRadius={8} src={category.icon} />
-                {selectedCategory?.name === category.name ? (
-                  <Text as="b">{category.name}</Text>
-                ) : (
-                  <Button whiteSpace="normal" textAlign="left" variant="link">
-                    {category.name}
-                  </Button>
-                )}
+                <NavLink to={`/category/${slugify(category.name)}`}>
+                  {category.name}
+                </NavLink>
               </HStack>
             </ListItem>
           ))}

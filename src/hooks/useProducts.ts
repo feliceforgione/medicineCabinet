@@ -30,7 +30,7 @@ export interface ProductsByCategory {
 }
 
 interface ProductQuery {
-  category: Category | null;
+  category: Category | null | undefined;
   sortOrder: string;
 }
 
@@ -38,11 +38,12 @@ const useProducts = ({ category, sortOrder }: ProductQuery) => {
   //console.log(productQuery);
   //
   return useQuery<ProductsByCategory, AxiosError>({
-    queryKey: ["category", category?.name, "products", sortOrder],
+    queryKey: ["category", category?.slug, "products", sortOrder],
     queryFn: () =>
       getProducts(`/category/${category?._id}/products`, {
         params: { sort: sortOrder },
       }),
+    enabled: !!category,
     staleTime: ms("5s"),
   });
 };

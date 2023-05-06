@@ -5,16 +5,49 @@ import SkeletonProductCard from "./SkeletonProductCard";
 import ProductCardContainer from "./ProductCardContainer";
 
 import useProductQueryStore from "../services/productQueryStore";
+import { useParams } from "react-router-dom";
+import useCategories, { Category } from "../hooks/useCategories";
+import useBreadCrumbStore from "../services/breadcrumbsStore";
+import { unstable_batchedUpdates } from "react-dom";
+import { useEffect } from "react";
 
-const ProductGrid = () => {
-  const category = useProductQueryStore((s) => s.category);
+const CategoryProductsGrid = () => {
+  const { categorySlug } = useParams();
+  const {
+    isLoading: isCategoryLoading,
+    isError,
+    data: categories,
+  } = useCategories();
+
+  const category = categories?.find(
+    (category) => category.slug === categorySlug
+  );
+  //console.log("catgory", category);
+
   const sortOrder = useProductQueryStore((s) => s.sortOrder);
   const {
     data: products,
     error,
     isLoading,
   } = useProducts({ category, sortOrder });
+
   const skeletons = [1, 2, 3];
+  const { updatecategoryBreadcrumb } = useBreadCrumbStore();
+  useEffect(() => {
+    console.log("inside useeffect", category);
+
+    updatecategoryBreadcrumb(
+      category
+        ? {
+            name: category.name,
+            link: `/category/${category.slug}`,
+          }
+        : null
+    );
+  }, [category]);
+  if (category == null) return <div>No category found</div>;
+  if (isCategoryLoading) return <div>Loading</div>;
+  if (isError) return <div>category query error</div>;
 
   return (
     <SimpleGrid
@@ -39,4 +72,4 @@ const ProductGrid = () => {
   );
 };
 
-export default ProductGrid;
+export default CategoryProductsGrid;

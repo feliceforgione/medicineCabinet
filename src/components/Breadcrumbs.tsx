@@ -1,21 +1,19 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Text,
-} from "@chakra-ui/react";
-import useProductQueryStore from "../services/productQueryStore";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
+import useBreadCrumbStore from "../services/breadcrumbsStore";
+import { Link } from "react-router-dom";
 
 function Breadcrumbs() {
-  const { category, setCategory } = useProductQueryStore();
+  const { categoryBreadcrumb } = useBreadCrumbStore();
+  const { homeBreadcrumb } = useBreadCrumbStore();
   return (
     <Breadcrumb spacing="8px" fontSize={20}>
       <BreadcrumbItem>
-        <BreadcrumbLink onClick={() => setCategory(null)}>Home</BreadcrumbLink>
+        <Link to={homeBreadcrumb?.link}>{homeBreadcrumb?.name}</Link>
       </BreadcrumbItem>
-      {category && (
-        <BreadcrumbItem isCurrentPage>
-          <Text>{category.name}</Text>
+
+      {categoryBreadcrumb && (
+        <BreadcrumbItem>
+          <BreadcrumbLink>{categoryBreadcrumb?.name}</BreadcrumbLink>
         </BreadcrumbItem>
       )}
     </Breadcrumb>

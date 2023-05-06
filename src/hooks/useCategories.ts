@@ -6,6 +6,7 @@ import { getData } from "../services/api-client";
 export interface Category {
   _id: string;
   name: string;
+  slug?: string;
   productIds: string[];
   icon: string;
 }
@@ -15,7 +16,7 @@ const useCategories = () => {
     queryKey: ["categories"],
     queryFn: () => getData("/category"),
     staleTime: ms("5s"),
-    initialData: initialCatetories,
+    //initialData: initialCatetories,
   });
 };
 

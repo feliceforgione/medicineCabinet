@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import CategoryGrid from "../components/CategoryGrid";
-import ProductGrid from "../components/ProductGrid";
 import CategoryPage from "../pages/CategoryPage";
 import Layout from "../pages/Layout";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import ErrorPage from "../pages/ErrorPage";
+import CategoryProductsGrid from "../components/CategoryProductsGrid";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
             element: <CategoryGrid />,
           },
           {
-            path: "category/:id",
-            element: <ProductGrid />,
+            path: "category/:categorySlug",
+            element: <CategoryProductsGrid />,
           },
         ],
       },

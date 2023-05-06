@@ -1,23 +1,40 @@
-import { AspectRatio, Card, CardBody, Heading, Image } from "@chakra-ui/react";
-import React from "react";
+import {
+  AspectRatio,
+  Box,
+  Card,
+  CardBody,
+  Heading,
+  Image,
+} from "@chakra-ui/react";
 import { Category } from "../hooks/useCategories";
-import useProductQueryStore from "../services/productQueryStore";
+import { Link } from "react-router-dom";
+import slugify from "@sindresorhus/slugify";
 
 interface Props {
   category: Category;
 }
 
 function CategoryCard({ category }: Props) {
-  const setCategory = useProductQueryStore((s) => s.setCategory);
   return (
-    <Card onClick={() => setCategory(category)}>
-      <AspectRatio ratio={4 / 3}>
-        <Image src={category?.icon} />
-      </AspectRatio>
-      <CardBody>
-        <Heading fontSize="xl">{category?.name}</Heading>
-      </CardBody>
-    </Card>
+    <Link to={`/category/${slugify(category.name)}`}>
+      <Box
+        borderRadius={10}
+        overflow="hidden"
+        _hover={{
+          transform: "scale(1.04)",
+          transition: "transform .15s ease-in",
+        }}
+      >
+        <Card>
+          <AspectRatio ratio={4 / 3}>
+            <Image src={category?.icon} />
+          </AspectRatio>
+          <CardBody>
+            <Heading fontSize="xl">{category?.name}</Heading>
+          </CardBody>
+        </Card>
+      </Box>
+    </Link>
   );
 }
 
