@@ -5,3 +5,12 @@ form {
 #categoriesSideBar .active {
   font-weight: 700;
 }
+
+.productDescription h3 {
+  font-weight: 700;
+}
+
+.productDescription p {
+  margin-bottom: 15px;
+  text-align: justify;
+}
