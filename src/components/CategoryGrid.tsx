@@ -4,6 +4,7 @@ import CategoryCard from "./CategoryCard";
 
 function CategoryGrid() {
   const { isError, isLoading, data: categories } = useCategories();
+
   if (isLoading) return <Spinner />;
   if (isError) return null;
 
