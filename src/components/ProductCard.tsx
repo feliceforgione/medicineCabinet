@@ -18,7 +18,7 @@ interface Props {
 function ProductCard({ product }: Props) {
   return (
     <Link to={`/products/${product._id}`}>
-      <Card>
+      <Card variant={"filled"}>
         <AspectRatio ratio={4 / 3}>
           <Image src={product.images[0].link} />
         </AspectRatio>

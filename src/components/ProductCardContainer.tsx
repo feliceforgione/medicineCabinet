@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 
 interface Props {
@@ -7,16 +7,19 @@ interface Props {
 
 function ProductCardContainer({ children }: Props) {
   return (
-    <Box
-      borderRadius={10}
-      overflow="hidden"
-      _hover={{
-        transform: "scale(1.03)",
-        transition: "transform .15s ease-in",
-      }}
-    >
-      {children}
-    </Box>
+    <>
+      <Box
+        borderRadius={15}
+        border={`2px solid ${useColorModeValue("#e2e8f0", "gray.800")}`}
+        overflow="hidden"
+        _hover={{
+          transform: "scale(1.03)",
+          transition: "transform .15s ease-in",
+        }}
+      >
+        {children}
+      </Box>
+    </>
   );
 }
 

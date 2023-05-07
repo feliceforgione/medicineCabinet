@@ -25,7 +25,7 @@ function CategoryCard({ category }: Props) {
           transition: "transform .15s ease-in",
         }}
       >
-        <Card>
+        <Card variant={"filled"}>
           <AspectRatio ratio={4 / 3}>
             <Image src={category?.icon} />
           </AspectRatio>

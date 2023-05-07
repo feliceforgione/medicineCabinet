@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getData, getProducts } from "../services/api-client";
+import { getData } from "../services/api-client";
 import { AxiosError } from "axios";
 import ms from "ms";
 import { Product } from "../entities/Product";
