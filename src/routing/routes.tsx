@@ -5,6 +5,7 @@ import Layout from "../pages/Layout";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import ErrorPage from "../pages/ErrorPage";
 import CategoryProductsGrid from "../components/CategoryProductsGrid";
+import ProductsPage from "../pages/ProductsPage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             element: <CategoryProductsGrid />,
           },
         ],
+      },
+      {
+        path: "products/",
+        element: <ProductsPage />,
       },
       {
         path: "products/:productId",

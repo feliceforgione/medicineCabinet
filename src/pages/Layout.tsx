@@ -19,7 +19,7 @@ function Layout() {
     <>
       <NavBar />
       <ErrorBoundary key={location.pathname} FallbackComponent={ErrorBox}>
-        <Box px={10}>
+        <Box px={4}>
           <Outlet />
         </Box>
       </ErrorBoundary>

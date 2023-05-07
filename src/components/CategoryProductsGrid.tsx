@@ -1,4 +1,4 @@
-import useProducts from "../hooks/useProducts";
+import useCategoryProducts from "../hooks/useCategoryProducts";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 import SkeletonProductCard from "./SkeletonProductCard";
@@ -29,7 +29,7 @@ const CategoryProductsGrid = () => {
     data: products,
     error,
     isLoading,
-  } = useProducts({ category, sortOrder });
+  } = useCategoryProducts({ category, sortOrder });
 
   const skeletons = [1, 2, 3];
   const { updatecategoryBreadcrumb } = useBreadCrumbStore();
