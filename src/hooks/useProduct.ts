@@ -8,6 +8,7 @@ const useProduct = (productId: string) => {
   return useQuery<Product, AxiosError>({
     queryKey: ["products", productId],
     queryFn: () => getDataPoint(`/products/${productId}`, {}),
+    enabled: !!productId,
     staleTime: ms("5s"),
   });
 };

@@ -19,7 +19,6 @@ function ProductDetailPage() {
   if (!product) throw Error("Product Not Found");
   if (error) throw error;
 
-  console.log(product);
   return (
     <>
       <SimpleGrid

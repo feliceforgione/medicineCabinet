@@ -5,7 +5,6 @@ const apiClient = axios.create({
   params: {},
 });
 
-console.log(import.meta.env.VITE_API_URL);
 const getData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
   return apiClient
     .get(endpoint, { ...requestConfig })
