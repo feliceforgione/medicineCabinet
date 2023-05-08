@@ -5,8 +5,11 @@ import CategoryList from "../components/CategoryList";
 import SortSelector from "../components/SortSelector";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBox from "../components/ErrorBox";
+import useBreadCrumbStore from "../services/breadcrumbsStore";
 
 function CategoryPage() {
+  const category = useBreadCrumbStore((s) => s.categoryBreadcrumb);
+
   return (
     <Grid
       templateAreas={{ base: `"main"`, lg: `"aside  main"` }}
@@ -24,7 +27,7 @@ function CategoryPage() {
         <ErrorBoundary FallbackComponent={ErrorBox}>
           <Flex justifyContent="space-between" paddingX={5}>
             <Breadcrumbs />
-            <SortSelector />
+            {category && <SortSelector />}
           </Flex>
           <Outlet />
         </ErrorBoundary>
