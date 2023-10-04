@@ -17,22 +17,37 @@
 
 ## About The Project
 
+<img src="./public/medicineCabinetScreenshot.png" alt="Logo">
+
 Front end for <a href="https://github.com/feliceforgione/otc_api"> OTC API </a>
+Displays over the counter product information in a storefront
 
 <br>
 
 ### Built With
 
-|                                     |                             |
-| ----------------------------------- | --------------------------- |
-| [Node.js](https://nodejs.org/en/)   | [React](https://react.dev/) |
-| [Chakra UI](https://chakra-ui.com/) |                             |
+|                                                 |                                            |
+| ----------------------------------------------- | ------------------------------------------ |
+| [TypeScript](https://www.typescriptlang.org/)   | [React 18](https://react.dev/)             |
+| [Chakra UI](https://chakra-ui.com/)             | [React Router](https://reactrouter.com/)   |
+| [TanStack Query 4](https://tanstack.com/query/) | [Zustand 4](https://zustand-demo.pmnd.rs/) |
+| [Vite](https://vitejs.dev/)                     | [JsDoc](https://jsdoc.app/)                |
 
 <br>
 
 <!-- Usage -->
 
+## Setup
+
+- Install packages: `npm install`
+- Setup `.env` file based off `.env=sample`
+- Start API server: <a href="https://github.com/feliceforgione/otc_api"> OTC API </a>
+
+<!-- Usage -->
+
 ## Usage
+
+- `npm run dev`
 
 <!-- ROADMAP -->
 
