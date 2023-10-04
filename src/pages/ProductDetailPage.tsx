@@ -13,7 +13,7 @@ import { Rating } from "react-simple-star-rating";
 
 function ProductDetailPage() {
   const { productId } = useParams();
-  const { data: product, isLoading, error } = useProduct(productId!);
+  const { data: product, isLoading, error } = useProduct(productId as string);
 
   if (isLoading) return <Spinner />;
   if (!product) throw Error("Product Not Found");

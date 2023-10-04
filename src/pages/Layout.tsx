@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBox from "../components/ErrorBox";
+import Footer from "../components/Footer";
 
 function Layout() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function Layout() {
           <Outlet />
         </Box>
       </ErrorBoundary>
+      <Footer />
     </>
   );
 }
