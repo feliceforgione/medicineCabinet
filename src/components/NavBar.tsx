@@ -3,6 +3,7 @@ import logo from "../assets/logo.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
 import { Link } from "react-router-dom";
+import AIAssistant from "../ai/AIAssistant";
 
 const NavBar = () => {
   return (
@@ -14,6 +15,7 @@ const NavBar = () => {
         <SearchInput />
       </Box>
       <ColorModeSwitch />
+      <AIAssistant />
     </HStack>
   );
 };
